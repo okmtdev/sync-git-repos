@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  git-auto-push:
+    build: .
+    volumes:
+      - ./:/app
+    environment:
+      - GIT_PAT=~
+    stdin_open: true
+    tty: true
