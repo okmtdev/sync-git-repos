@@ -1,5 +1,7 @@
 #!/bin/bash
 
+java -jar schemaspy.jar
+
 TOKEN=$GIT_PAT
 
 git config --global user.email "okmtdev@gmail.com"
@@ -9,7 +11,7 @@ rm -rf sync-git-repos
 git clone https://github.com/okmtdev/sync-git-repos.git
 cd sync-git-repos
 
-# ここでSSGをビルドしてhtmlを更新
+cp -r /output/* docs/
 
 git add docs
 git commit -m "update docs"

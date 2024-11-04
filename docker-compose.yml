@@ -1,11 +1,36 @@
 version: "3.8"
 
 services:
-  git-auto-push:
-    build: .
+  db:
+    image: postgres:16.4
+    container_name: postgres
+    environment:
+      POSTGRES_DB: blog
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5432:5432
     volumes:
-      - ./:/app
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d blog"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - schemaspy-git-auto-push
+  git-auto-push:
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       - GIT_PAT=~
-    stdin_open: true
-    tty: true
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - schemaspy-git-auto-push
+
+networks:
+  schemaspy-git-auto-push:
