@@ -33,7 +33,7 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="users" numRows="1" remarks="" schema="public" type="TABLE">
+      <table name="users" numRows="0" remarks="" schema="public" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="2147483647" type="uuid" typeCode="1111">
             <child column="user_id" foreignKey="articles_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="articles"/>
             <child column="user_id" foreignKey="comments_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="comments"/>
