@@ -11,6 +11,7 @@ RUN apk --update add graphviz ttf-dejavu && \
 
 COPY schemaspy.properties /schemaspy.properties
 COPY drivers/postgresql-42.7.4.jar /drivers/postgresql.jar
+
 RUN apk add --no-cache git bash
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
